@@ -1,0 +1,20 @@
+
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head"></head>
+<body class="container">
+<h1 th:text="${title}"> Default title</h1>
+<nav th:replace="fragments::navigation">
+</nav>
+
+<form method="post">
+
+<div class="checkbox" th:each="grocery:${grocerylist}">
+<input type="checkbox" name="groceryId" th:value="${grocery.id}" th:id="${grocery.id}">
+<label th:for="${grocery.id}" th:text="${grocery.name}"></label>
+</div>
+
+<input type="submit"value="Remove Item">
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head">  </head>
+
+<body class="container">
+   <h1 th:text="${title}"> Default title</h1>
+   <nav th:replace="fragments::navigation">
+   </nav>
+   <p th:unless="${grocerylist} and ${grocerylist.size()}"> no gorcery :(</p>
+   
+   
+   <table class="table">
+   <tr> 
+   <th>Name</th>
+   <th>description</th>
+   <th>Date Created</th>
+   </tr>
+   <tr th:each="grocery:${grocerylist}">
+   <td th:text="${grocery.name}"></td>
+   <td th:text="${grocery.description}"></td>
+   <td th:text="${#temporals.format(grocery.createdDate,'dd-MMM-yyyy')}"></td>
+   <td>
+   <input type="checkbox" name="groceryId" th:value="${grocery.id}" th:id="${grocery.id}">
+   </td> 
+   </tr>
+   </table>
+   </body>
+</html>
